@@ -1,0 +1,34 @@
+# Python environments and generated files
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+
+# Local models and caches
+.cache/
+.huggingface/
+huggingface_cache/
+models/
+model_cache/
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+
+# Local recordings and generated media
+*.wav
+*.mp3
+*.webm
+*.m4a
+
+# Test, editor, and operating-system artifacts
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+PROJECT_DOCUMENTATION.md

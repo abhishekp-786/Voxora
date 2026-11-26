@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f7fb">
+  <title>Voxora — AI Sales Workspace</title>
+  <link rel="stylesheet" href="styles.css?v=3">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="Voxora home" data-page-link="dashboard">
+        <span class="brand-mark">V</span><span>voxora<span class="brand-dot">.</span></span>
+      </a>
+      <div class="workspace-label">WORKSPACE</div>
+      <nav class="side-nav" aria-label="Main navigation">
+        <button class="nav-link active" data-page-link="dashboard"><span class="nav-icon">⌂</span>Overview</button>
+        <button class="nav-link" data-page-link="calls"><span class="nav-icon">◉</span>Live calls <span class="nav-count" id="nav-call-count">0</span></button>
+        <button class="nav-link" data-page-link="leads"><span class="nav-icon">♙</span>Leads</button>
+        <button class="nav-link" data-page-link="knowledge"><span class="nav-icon">▤</span>Knowledge base</button>
+        <button class="nav-link" data-page-link="insights"><span class="nav-icon">↗</span>Insights</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="sidebar-status"><span class="status-pulse"></span><span><b>Agent ready</b><small>Local voice processing</small></span></div>
+        <button class="nav-link" data-page-link="settings"><span class="nav-icon">⚙</span>Settings</button>
+        <div class="profile"><div class="avatar avatar-purple">JD</div><span><b>Jordan Davis</b><small>Workspace admin</small></span><span class="profile-more">···</span></div>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobile-menu" aria-label="Open navigation">☰</button>
+        <div class="breadcrumbs">Workspace <span>/</span> <b id="page-crumb">Overview</b></div>
+        <div class="topbar-actions"><span class="today-label" id="today-label"></span><button class="icon-button" id="help-button" title="About this demo">?</button><div class="avatar avatar-green">JD</div></div>
+      </header>
+
+      <section class="page active" id="page-dashboard">
+        <div class="page-heading heading-row">
+          <div><div class="eyebrow">YOUR SALES DESK IS READY</div><h1>Welcome back, Jordan <span class="wave">✦</span></h1><p>Here’s what’s happening across your conversations.</p></div>
+          <button class="button button-primary" data-start-call><span>＋</span> Start a demo call</button>
+        </div>
+        <div class="stat-grid">
+          <article class="stat-card"><div class="stat-top"><span>Calls handled</span><span class="stat-icon icon-blue">◉</span></div><strong id="stat-calls">0</strong><small><span class="trend-up">↑</span> This workspace</small></article>
+          <article class="stat-card"><div class="stat-top"><span>Qualified leads</span><span class="stat-icon icon-violet">♙</span></div><strong id="stat-qualified">0</strong><small>Based on conversation signals</small></article>
+          <article class="stat-card"><div class="stat-top"><span>Appointments booked</span><span class="stat-icon icon-orange">▦</span></div><strong id="stat-bookings">0</strong><small>Stored in your local CRM</small></article>
+          <article class="stat-card"><div class="stat-top"><span>Positive sentiment</span><span class="stat-icon icon-green">♡</span></div><strong id="stat-sentiment">—</strong><small>Across completed calls</small></article>
+        </div>
+        <div class="dashboard-grid">
+          <section class="panel calls-panel">
+            <div class="panel-heading"><div><h2>Recent calls</h2><p>Your latest conversations and outcomes</p></div><button class="text-button" data-page-link="calls">View all <span>→</span></button></div>
+            <div id="recent-calls" class="recent-list"></div>
+          </section>
+          <section class="panel workflow-panel">
+            <div class="panel-heading"><div><h2>Try the workflow</h2><p>From first hello to booked meeting</p></div><span class="live-badge"><i></i> READY</span></div>
+            <div class="workflow-steps">
+              <div class="workflow-step"><span class="step-number">01</span><div><b>Start a conversation</b><small>Type or use your microphone</small></div><span class="step-check">✓</span></div>
+              <div class="workflow-step"><span class="step-number">02</span><div><b>Qualify the lead</b><small>Capture needs, budget & timing</small></div><span class="step-check">✓</span></div>
+              <div class="workflow-step"><span class="step-number">03</span><div><b>Book the next step</b><small>Save a meeting to your CRM</small></div><span class="step-check">✓</span></div>
+            </div>
+            <button class="button button-secondary full-button" data-start-call>Run the demo workflow <span>→</span></button>
+          </section>
+        </div>
+        <section class="panel pipeline-panel">
+          <div class="panel-heading"><div><h2>Lead pipeline</h2><p>Qualification status across your prospects</p></div><button class="text-button" data-page-link="leads">Manage leads <span>→</span></button></div>
+          <div class="pipeline" id="pipeline"></div>
+        </section>
+        <div class="demo-note"><span>✦</span><div><b>Prototype mode</b><span>Speech is transcribed on this computer with local Whisper. App data and recordings stay on this device.</span></div><button class="text-button" data-page-link="settings">Learn more →</button></div>
+      </section>
+
+      <section class="page" id="page-calls">
+        <div class="page-heading heading-row"><div><div class="eyebrow">CONVERSATION WORKSPACE</div><h1>Live calls</h1><p>Practice a complete sales conversation with the AI agent.</p></div><button class="button button-primary" data-start-call><span>＋</span> New conversation</button></div>
+        <div class="call-layout">
+          <section class="panel conversation-panel">
+            <div class="conversation-top"><div class="conversation-contact"><div class="avatar avatar-orange" id="call-avatar">NP</div><div><b id="call-name">New prospect</b><small><span class="status-pulse"></span> Demo conversation</small></div></div><div class="call-actions"><select id="language-select" aria-label="Conversation language"><option value="en-US">English</option><option value="es-ES">Español</option><option value="fr-FR">Français</option><option value="hi-IN">हिन्दी</option></select><label class="voice-toggle" title="Speak agent replies"><input type="checkbox" id="voice-output" checked><span>◖</span></label><button class="button button-danger" id="end-call">End call</button></div></div>
+            <div class="transcript" id="transcript" aria-live="polite"></div>
+            <div class="voice-status" id="voice-status">Click the microphone to record; speech is transcribed locally. First use downloads the model.</div>
+            <form class="message-form" id="message-form"><button type="button" class="mic-button" id="mic-button" title="Start local speech recording" aria-label="Start local speech recording">♩</button><input id="message-input" autocomplete="off" placeholder="Type what the prospect says…" aria-label="Message"><button class="send-button" type="submit" aria-label="Send message">↑</button></form>
+            <div class="composer-hint">Click the mic again to finish recording <span>·</span> Audio is processed on this computer</div>
+          </section>
+          <aside class="call-sidebar">
+            <section class="panel lead-card"><div class="panel-heading"><div><h2>Lead qualification</h2><p>Updated from the conversation</p></div><span id="lead-status" class="status-tag">New</span></div><div class="lead-identity"><div class="avatar avatar-purple" id="lead-avatar">NP</div><div><b id="lead-card-name">New prospect</b><small id="lead-card-company">Prospect · website inquiry</small></div></div><div class="qualification-list" id="qualification-list"></div><label class="field-label" for="lead-email">Email address</label><input class="field-input" type="email" id="lead-email" placeholder="prospect@company.com"><button class="button button-secondary full-button" id="save-lead">Save lead to CRM</button></section>
+            <section class="panel knowledge-card"><div class="panel-heading"><div><h2>Knowledge assist</h2><p>Relevant product information</p></div><span class="sparkle">✦</span></div><div id="knowledge-result" class="knowledge-result"><span class="empty-icon">⌕</span><p>Product answers will appear here as the conversation unfolds.</p></div></section>
+            <section class="panel booking-card"><div class="panel-heading"><div><h2>Book a meeting</h2><p>Schedule the next step</p></div><span class="stat-icon icon-orange">▦</span></div><form id="booking-form"><label class="field-label" for="meeting-date">Date</label><input class="field-input" type="date" id="meeting-date" required><div class="field-row"><div><label class="field-label" for="meeting-time">Time</label><input class="field-input" type="time" id="meeting-time" value="10:00" required></div><div><label class="field-label" for="meeting-type">Meeting</label><select class="field-input" id="meeting-type"><option>Product demo</option><option>Discovery call</option><option>Follow-up</option></select></div></div><button class="button button-primary full-button" type="submit">Confirm appointment</button></form></section>
+          </aside>
+        </div>
+      </section>
+
+      <section class="page" id="page-leads">
+        <div class="page-heading heading-row"><div><div class="eyebrow">CUSTOMER RELATIONSHIPS</div><h1>Leads</h1><p>Prospects captured and qualified through conversations.</p></div><button class="button button-secondary" id="export-leads">↓ Export CSV</button></div>
+        <section class="panel leads-panel"><div class="table-toolbar"><div class="search-wrap"><span>⌕</span><input id="lead-search" placeholder="Search leads…" aria-label="Search leads"></div><select id="lead-filter" class="filter-select"><option value="all">All statuses</option><option value="Qualified">Qualified</option><option value="Contacted">Contacted</option><option value="New">New</option></select><span class="table-count" id="lead-count"></span></div><div class="table-scroll"><table><thead><tr><th>PROSPECT</th><th>COMPANY</th><th>STATUS</th><th>INTEREST</th><th>LAST ACTIVITY</th></tr></thead><tbody id="leads-table"></tbody></table></div><div class="empty-state hidden" id="leads-empty">No leads yet. Start a demo call to create your first prospect.</div></section>
+      </section>
+
+      <section class="page" id="page-knowledge">
+        <div class="page-heading heading-row"><div><div class="eyebrow">RETRIEVAL-AUGMENTED ANSWERS</div><h1>Knowledge base</h1><p>Give your agent product facts to retrieve during conversations.</p></div><span class="local-pill"><i></i> Local demo index</span></div>
+        <div class="knowledge-layout"><section class="panel knowledge-library"><div class="panel-heading"><div><h2>Knowledge sources</h2><p>Short notes are indexed on this device</p></div><span class="source-count" id="source-count">0 sources</span></div><form id="knowledge-form" class="add-source-form"><label class="field-label" for="source-title">Source title</label><input class="field-input" id="source-title" required placeholder="e.g. Pricing and plans"><label class="field-label" for="source-content">Content</label><textarea class="field-input" id="source-content" rows="4" required placeholder="Add product details, pricing, policies or FAQs…"></textarea><button class="button button-primary" type="submit">＋ Add knowledge source</button></form><div id="source-list" class="source-list"></div></section>
+          <section class="panel retrieval-panel"><div class="panel-heading"><div><h2>Test retrieval</h2><p>Ask a question to find the best matching source</p></div><span class="sparkle">⌕</span></div><form id="retrieval-form" class="retrieval-form"><input class="field-input" id="retrieval-query" placeholder="What does the product cost?" required><button class="button button-primary" type="submit">Search</button></form><div id="retrieval-results" class="retrieval-results"><div class="retrieval-empty"><span>⌕</span><p>Ask a question to see relevant excerpts and their sources.</p></div></div><div class="retrieval-footnote">Prototype uses transparent keyword matching. Production architecture can replace this with multilingual embeddings and a vector database.</div></section></div>
+      </section>
+
+      <section class="page" id="page-insights">
+        <div class="page-heading"><div><div class="eyebrow">CONVERSATION INTELLIGENCE</div><h1>Insights</h1><p>A lightweight view of call outcomes and customer sentiment.</p></div></div>
+        <div class="stat-grid insights-stats"><article class="stat-card"><div class="stat-top"><span>Total conversations</span><span class="stat-icon icon-blue">◉</span></div><strong id="insight-calls">0</strong><small>Completed demo calls</small></article><article class="stat-card"><div class="stat-top"><span>Qualification rate</span><span class="stat-icon icon-violet">♙</span></div><strong id="insight-rate">0%</strong><small>Calls with buying signals</small></article><article class="stat-card"><div class="stat-top"><span>Meetings booked</span><span class="stat-icon icon-orange">▦</span></div><strong id="insight-bookings">0</strong><small>Appointments scheduled</small></article><article class="stat-card"><div class="stat-top"><span>Average sentiment</span><span class="stat-icon icon-green">♡</span></div><strong id="insight-sentiment">—</strong><small>Rule-based conversation signal</small></article></div>
+        <div class="dashboard-grid"><section class="panel"><div class="panel-heading"><div><h2>Conversation outcomes</h2><p>How prospects are progressing</p></div></div><div id="outcome-bars" class="outcome-bars"></div></section><section class="panel"><div class="panel-heading"><div><h2>Business takeaways</h2><p>Signals from your workspace data</p></div></div><div id="business-takeaways" class="takeaways"></div></section></div>
+        <div class="demo-note"><span>ⓘ</span><div><b>Interpret with care</b><span>Sentiment and qualification are simple heuristics in this MVP, not validated predictions. Do not use them as the sole basis for consequential decisions.</span></div></div>
+      </section>
+
+      <section class="page" id="page-settings">
+        <div class="page-heading"><div><div class="eyebrow">WORKSPACE CONFIGURATION</div><h1>Settings</h1><p>Prototype capabilities, privacy and production integration notes.</p></div></div>
+        <div class="settings-grid"><section class="panel"><div class="panel-heading"><div><h2>Voice & language</h2><p>Local Whisper transcription and browser speech synthesis</p></div><span class="stat-icon icon-blue">♩</span></div><div class="setting-row"><div><b>Speech recognition</b><small>Runs on this computer through the local Python service.</small></div><span id="stt-support" class="status-tag">Checking</span></div><div class="setting-row"><div><b>Speech synthesis</b><small>Reads agent responses aloud using your system voices.</small></div><span id="tts-support" class="status-tag">Checking</span></div><div class="setting-row"><div><b>Transcription languages</b><small>English, Spanish, French and Hindi via Whisper.</small></div><span class="local-pill">On-device</span></div><div class="voice-troubleshooting"><b>First-use setup</b><p>Install dependencies with <code>python -m pip install -r requirements.txt</code> and run <code>python server.py</code>. The first transcription downloads the open Whisper Tiny model (~150 MB); speech recordings are sent only to the local service.</p></div></section>
+          <section class="panel"><div class="panel-heading"><div><h2>Data & integrations</h2><p>What this prototype does and does not do</p></div><span class="stat-icon icon-violet">◇</span></div><div class="setting-row"><div><b>Local CRM</b><small>Leads, calls and appointments stay in this browser's local storage.</small></div><span class="status-tag status-good">Enabled</span></div><div class="setting-row"><div><b>External services</b><small>No third-party AI, telephony, calendar or CRM API is connected.</small></div><span class="status-tag">Not connected</span></div><button class="button button-secondary" id="clear-data">Clear local demo data</button></section></div>
+        <section class="panel production-panel"><div class="panel-heading"><div><h2>Production readiness checklist</h2><p>Recommended next steps before handling real customer data</p></div></div><div class="production-grid"><div><span>01</span><b>Secure services</b><small>Move integrations behind authenticated APIs; encrypt data in transit and at rest; define retention and consent policies.</small></div><div><span>02</span><b>Reliable voice stack</b><small>Add streaming telephony, managed STT/TTS, interruption handling, monitoring and human handoff.</small></div><div><span>03</span><b>Scale safely</b><small>Use stateless services, queues, tenant isolation, rate limits and regional autoscaling; load-test toward 100,000 users.</small></div></div></section>
+      </section>
+      <footer class="footer">Voxora prototype <span>·</span> Built for a complete sales workflow <span>·</span> No app backend or third-party AI/CRM API connected</footer>
+    </main>
+  </div>
+  <div class="toast-region" id="toast-region" aria-live="polite"></div>
+  <dialog id="about-dialog" class="about-dialog"><button class="dialog-close" id="close-dialog" aria-label="Close">×</button><div class="brand-mark">V</div><h2>Voxora prototype</h2><p>A sales voice agent MVP demonstrating conversation, qualification, local knowledge retrieval, appointment booking and CRM persistence.</p><p class="dialog-small">No API keys or hosted speech services. First local transcription downloads the Whisper model; audio remains on this computer.</p><button class="button button-primary" id="dialog-ok">Got it</button></dialog>
+  <script src="app.js?v=5"></script>
+</body>
+</html>
