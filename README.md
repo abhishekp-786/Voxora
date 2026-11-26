@@ -2,8 +2,6 @@
 
 A local browser MVP for demonstrating a complete inbound sales workflow: microphone or text conversation → lead qualification → grounded product answer → appointment booking → call summary and CRM-ready record. Speech recognition runs on the user's computer using Whisper Tiny; no hosted speech service or API key is used.
 
-**Complete technical and presentation guide:** [PROJECT_DOCUMENTATION.md](PROJECT_DOCUMENTATION.md) — architecture and diagram glossary, technology/API details, recruiter demo prompts, full workflow, privacy and scaling notes, GitHub publishing steps, and viva questions with suggested answers.
-
 ## Run it
 
 The UI has no build step. Local speech transcription requires Python and downloads the open Whisper Tiny model (~150 MB) the first time you send a recording.
